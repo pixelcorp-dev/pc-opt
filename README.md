@@ -1,2 +1,3 @@
-# pc-opt
+# PC-OPT
 OPTIMIZE YOUR PC bit-by-bit (PIXEL)
+
