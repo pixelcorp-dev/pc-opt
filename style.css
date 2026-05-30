@@ -1,0 +1,319 @@
+:root {
+    --space-black: #030108;
+    --luxury-purple: #100624;
+    --neon-violet: #9d4edf;
+    --neon-cyan: #00f0ff;
+    --text-pure: #ffffff;
+    --text-muted: #8e86a4;
+    --font-mono: 'Consolas', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none !important; /* Forces custom luxury cursor */
+}
+
+body {
+    background-color: var(--space-black);
+    color: var(--text-pure);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    overflow-x: hidden;
+}
+
+/* Luxury Cinematic Background Overlays */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+}
+
+.vignette-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle, transparent 30%, rgba(3, 1, 8, 0.9) 100%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Premium Cursor Objects */
+.custom-cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #fff;
+    position: fixed;
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
+
+.custom-cursor-outline {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--neon-violet);
+    position: fixed;
+    border-radius: 50%;
+    z-index: 9998;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease-out, width 0.2s, height 0.2s, border-color 0.2s;
+}
+
+/* Header UI Elements */
+header {
+    text-align: center;
+    margin-bottom: 4rem;
+    animation: luxuryFadeIn 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brand-badge {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    color: var(--neon-violet);
+    border: 1px solid rgba(157, 78, 223, 0.3);
+    padding: 0.4rem 1rem;
+    display: inline-block;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+    background: rgba(16, 6, 36, 0.5);
+}
+
+.logo {
+    font-size: 3.8rem;
+    font-weight: 800;
+    letter-spacing: 6px;
+    margin-bottom: 1rem;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #fff 30%, var(--neon-violet) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+}
+
+/* Premium Card Structures with Hover Matrix Transform */
+.container {
+    display: flex;
+    gap: 4rem;
+    max-width: 1200px;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+}
+
+.premium-card {
+    background: linear-gradient(145deg, rgba(20, 10, 35, 0.6), rgba(10, 4, 20, 0.8));
+    border-radius: 20px;
+    width: 440px;
+    position: relative;
+    padding: 1px; /* Creates high-end hairline gradient frame border */
+    overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+    transition: box-shadow 0.5s ease;
+}
+
+.premium-card:hover {
+    box-shadow: 0 0 50px rgba(157, 78, 223, 0.25);
+}
+
+.card-inner {
+    background: #090412;
+    border-radius: 19px;
+    padding: 4rem 3rem;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Subtle Corner Ambient Spotlight */
+.glow-point {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 0%, rgba(157, 78, 223, 0.15), transparent 60%);
+    pointer-events: none;
+}
+
+.icon-wrapper {
+    font-size: 3rem;
+    color: var(--neon-violet);
+    width: 80px;
+    height: 80px;
+    background: rgba(157, 78, 223, 0.05);
+    border: 1px solid rgba(157, 78, 223, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s, box-shadow 0.5s;
+}
+
+.premium-card:hover .icon-wrapper {
+    transform: translateZ(30px) scale(1.05);
+    border-color: var(--neon-violet);
+    box-shadow: 0 0 30px rgba(157, 78, 223, 0.3);
+}
+
+/* Secondary Custom Theme Rules */
+.cyan-theme {
+    color: var(--neon-cyan);
+    background: rgba(0, 240, 255, 0.05);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+}
+.premium-card:hover .cyan-theme {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+}
+
+.premium-card h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+    transform: translateZ(20px);
+}
+
+.divider {
+    width: 40px;
+    height: 2px;
+    background: var(--neon-violet);
+    margin-bottom: 1.5rem;
+    transition: width 0.4s ease;
+}
+.premium-card:hover .divider { width: 80px; }
+.premium-card:hover .cyan-theme + h2 + .divider { background: var(--neon-cyan); }
+
+.premium-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    text-align: center;
+    margin-bottom: 3rem;
+    height: 80px;
+    transform: translateZ(15px);
+}
+
+/* Premium Button Designs */
+.premium-link { text-decoration: none; width: 100%; display: block; transform: translateZ(25px); }
+
+.premium-btn {
+    width: 100%;
+    padding: 1.2rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-pure);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.premium-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transition: 0.5s;
+}
+
+.premium-btn:hover {
+    border-color: var(--neon-violet);
+    background: rgba(157, 78, 223, 0.1);
+    box-shadow: 0 0 20px rgba(157, 78, 223, 0.2);
+    text-shadow: 0 0 8px #fff;
+}
+
+.premium-btn:hover::after { left: 100%; }
+
+.cyan-btn:hover {
+    border-color: var(--neon-cyan);
+    background: rgba(0, 240, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+}
+
+/* High-End Clean Output Terminal Panel */
+.console-frame {
+    width: 100%;
+    max-width: 920px;
+    background: rgba(7, 4, 15, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    backdrop-filter: blur(20px);
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.9);
+}
+
+.console-nav {
+    background: rgba(16, 10, 30, 0.6);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.nav-controls { display: flex; gap: 0.5rem; }
+.nav-controls span { width: 8px; height: 8px; background: rgba(255,255,255,0.2); border-radius: 50%; }
+
+.nav-status {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+.console-viewport {
+    padding: 1.8rem 2rem;
+    font-family: var(--font-mono);
+    color: #e2dbf0;
+    font-size: 0.9rem;
+    min-height: 120px;
+    line-height: 1.7;
+}
+
+/* Animations */
+@keyframes luxuryFadeIn {
+    from { opacity: 0; transform: translateY(20px); filter: blur(5px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
