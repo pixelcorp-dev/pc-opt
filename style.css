@@ -3,6 +3,7 @@
     --luxury-purple: #100624;
     --neon-violet: #9d4edf;
     --neon-cyan: #00f0ff;
+    --discord-blurple: #5865F2;
     --text-pure: #ffffff;
     --text-muted: #8e86a4;
     --font-mono: 'Consolas', monospace;
@@ -12,7 +13,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none !important; /* Forces custom luxury cursor */
+    cursor: none !important; /* Hides default cursor to enable the custom premium layout */
 }
 
 body {
@@ -24,7 +25,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 3rem 2rem;
+    padding: 4rem 2rem;
     overflow-x: hidden;
 }
 
@@ -49,7 +50,7 @@ body {
     pointer-events: none;
 }
 
-/* Premium Cursor Objects */
+/* Premium Cursor Elements */
 .custom-cursor-dot {
     width: 6px;
     height: 6px;
@@ -73,11 +74,14 @@ body {
     transition: transform 0.1s ease-out, width 0.2s, height 0.2s, border-color 0.2s;
 }
 
-/* Header UI Elements */
+/* Header Elements & Discord Trigger */
 header {
     text-align: center;
     margin-bottom: 4rem;
     animation: luxuryFadeIn 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .brand-badge {
@@ -115,7 +119,68 @@ header {
     line-height: 1.6;
 }
 
-/* Premium Card Structures with Hover Matrix Transform */
+/* Premium Discord Component Layout */
+.discord-link-wrapper {
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 2rem;
+    animation: luxuryFadeIn 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.discord-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.9rem 2.2rem;
+    background: rgba(88, 101, 242, 0.05);
+    border: 1px solid rgba(88, 101, 242, 0.25);
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.discord-btn i {
+    font-size: 1.2rem;
+    color: var(--discord-blurple);
+    transition: transform 0.4s ease;
+}
+
+.discord-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(88, 101, 242, 0.2), transparent);
+    transition: 0.6s ease;
+}
+
+.discord-btn:hover {
+    border-color: var(--discord-blurple);
+    background: rgba(88, 101, 242, 0.15);
+    box-shadow: 0 0 30px rgba(88, 101, 242, 0.3);
+    transform: translateY(-2px);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+.discord-btn:hover i {
+    transform: scale(1.15) rotate(-8deg);
+    color: #fff;
+    filter: drop-shadow(0 0 6px var(--discord-blurple));
+}
+
+.discord-btn:hover::after {
+    left: 100%;
+}
+
+/* Premium Card Structures with Matrix Transforms */
 .container {
     display: flex;
     gap: 4rem;
@@ -131,16 +196,15 @@ header {
     border-radius: 20px;
     width: 440px;
     position: relative;
-    padding: 1px; /* Creates high-end hairline gradient frame border */
+    padding: 1px;
     overflow: hidden;
-    transform-style: preserve-3d;
-    perspective: 1000px;
     box-shadow: 0 30px 60px rgba(0,0,0,0.8);
-    transition: box-shadow 0.5s ease;
+    transition: box-shadow 0.5s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .premium-card:hover {
     box-shadow: 0 0 50px rgba(157, 78, 223, 0.25);
+    transform: translateY(-5px);
 }
 
 .card-inner {
@@ -156,7 +220,6 @@ header {
     z-index: 2;
 }
 
-/* Subtle Corner Ambient Spotlight */
 .glow-point {
     position: absolute;
     top: 0;
@@ -183,12 +246,11 @@ header {
 }
 
 .premium-card:hover .icon-wrapper {
-    transform: translateZ(30px) scale(1.05);
+    transform: scale(1.05);
     border-color: var(--neon-violet);
     box-shadow: 0 0 30px rgba(157, 78, 223, 0.3);
 }
 
-/* Secondary Custom Theme Rules */
 .cyan-theme {
     color: var(--neon-cyan);
     background: rgba(0, 240, 255, 0.05);
@@ -204,7 +266,6 @@ header {
     font-weight: 700;
     letter-spacing: 3px;
     margin-bottom: 1rem;
-    transform: translateZ(20px);
 }
 
 .divider {
@@ -224,11 +285,10 @@ header {
     text-align: center;
     margin-bottom: 3rem;
     height: 80px;
-    transform: translateZ(15px);
 }
 
-/* Premium Button Designs */
-.premium-link { text-decoration: none; width: 100%; display: block; transform: translateZ(25px); }
+/* Button UI Layouts */
+.premium-link { text-decoration: none; width: 100%; display: block; }
 
 .premium-btn {
     width: 100%;
@@ -282,6 +342,7 @@ header {
     backdrop-filter: blur(20px);
     overflow: hidden;
     box-shadow: 0 40px 80px rgba(0,0,0,0.9);
+    animation: luxuryFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .console-nav {
@@ -312,7 +373,7 @@ header {
     line-height: 1.7;
 }
 
-/* Animations */
+/* Core System Keyframes */
 @keyframes luxuryFadeIn {
     from { opacity: 0; transform: translateY(20px); filter: blur(5px); }
     to { opacity: 1; transform: translateY(0); filter: blur(0); }
